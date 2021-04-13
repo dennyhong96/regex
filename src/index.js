@@ -74,3 +74,28 @@ console.log("Your sandwich will be $5.00".match(/[0-9]/g)); // [ '5', '0', '0' ]
 
 // Match all non-numbers
 console.log("Your sandwich will be $5.00".match(/\D/g)); // [  'Y', 'o', 'u', 'r', ' ',  's', 'a', 'n', 'd', 'w',  'i', 'c', 'h', ' ', 'w',  'i', 'l', 'l', ' ', 'b',  'e', ' ', '$', '.']
+
+// Restrict possible usernames
+// 1) If there are numbers, they must be at the end.
+// 2) Letters can be lowercase and uppercase.
+// 3) At least two characters long. Two-letter names can't have numbers.
+console.log(/^[a-z]{2,}\d*$/i.test("JackOfAllTrades")); // true
+console.log(/^[a-z]{2,}\d*$/i.test("JC")); // true
+console.log(/^[a-z]{2,}\d*$/i.test("J2")); // false
+
+// Match whitespaces
+console.log("Whitespace is important in separating words.\nA new line. \tTabbed!".match(/\s/g)); // [  ' ',  ' ', ' ',  ' ',  ' ', '\n',  ' ',  ' ', ' ',  '\t']
+
+// Match non-whitespaces
+console.log("Whitespace is important in separating words.\nA new line. \tTabbed!".match(/\S/g));
+
+// Specify upper and lower number of matches
+console.log(/Oh{0,5} no/.test("Ohhh no")); // true
+console.log(/Oh{5,} no/.test("Ohhh no")); // false
+console.log(/Haz{3,6}ah/.test("Hazzzzah")); // true
+console.log(/Tim{4}ber/.test("Timmmmber")); // true
+console.log(/Tim{3}ber/.test("Timmmmber")); // false
+
+// Check for all or none - ?
+console.log(/favou?rite/.test("favorite")); // true
+console.log(/favou?rite/.test("favourite")); // true
