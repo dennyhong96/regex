@@ -96,6 +96,45 @@ console.log(/Haz{3,6}ah/.test("Hazzzzah")); // true
 console.log(/Tim{4}ber/.test("Timmmmber")); // true
 console.log(/Tim{3}ber/.test("Timmmmber")); // false
 
-// Check for all or none - ?
+// Check for all  or none - ?
 console.log(/favou?rite/.test("favorite")); // true
 console.log(/favou?rite/.test("favourite")); // true
+
+// Positive and negative lookahead
+
+// Positive lookahead - If there is a 'u' after 'q', match the 'q'
+console.log("qu".match(/q(?=u)/)); // [ 'q' ]
+console.log("qt".match(/q(?=u)/)); // null
+
+// Negative lookahead - If there is no 'u' after 'q', match the 'q'
+console.log("qu".match(/q(?!u)/)); // null
+console.log("qt".match(/q(?!u)/)); // [ 'q' ]
+
+// Use lookahead to check two or more patterns within one string
+// Match 5 or more characters and 2 or more digits
+console.log(/(?=\w{5})(?=\D*\d{2})/.test("astronaut")); // false
+console.log(/(?=\w{5})(?=\D*\d{2})/.test("astronaut22")); // true
+console.log(/(?=\w{5})(?=\D*\d{2})/.test("astro22naut")); // true
+console.log(/(?=\[a-zA-Z]{5})(?=\D*\d{2})/.test("ast22ronaut")); // false
+
+// Reuse patterns using capture groups
+
+// '\1' represents the '(\w+)' capture group
+// 'regex regex' is the full match
+// 'regex' is what captured in a single capture group
+console.log("regex regex".match(/(\w+)\s\1/)); // [  'regex regex',  'regex',]
+
+console.log("regex string".match(/(\w+)\s\1/)); // null
+
+console.log("42 42 42".match(/(\d+)\s\1\s\1/)); // [ '42 42 42', '42' ]
+console.log(/(\d+)\s\1\s\1/.test("42 42 42")); // true
+
+// Use capture groups to search and replace
+console.log("The sky is silver.".replace(/silver/, "blue")); // The sky is blue.
+
+// '$1' refers to the 1st capture group '(\w+)' in the regex
+// '$2' refers to the 2nd capture group '(\w+)' in the regex
+console.log("Denny Hong".replace(/(\w+)\s(\w+)/, "$2 $1")); // Hong Denny
+
+// Remove whitespace from start and end
+console.log("    Hello, World!   ".replace(/^\s+|\s+$/g, "")); // Hello, World!
