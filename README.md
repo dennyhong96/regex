@@ -1,6 +1,7 @@
 ### Regex exercise
 
 [Learn Regular Expressions (Regex)](https://www.youtube.com/watch?v=ZfQFUJhPqMM)
+[Notes](https://www.notion.so/Intro-to-Regular-Expressions-853550f27e6a447b8f552499ff6c4bfd)
 
 ```JavaScript
 // src/index.js
